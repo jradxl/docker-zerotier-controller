@@ -121,7 +121,7 @@ RUN chmod +x /etc/services.d/*/run
 # schema
 COPY ./schema /app/schema/
 
-EXPOSE 3000 4000 9993 9993/UDP
+EXPOSE 4000 9993 9993/UDP
 ENV S6_KEEP_ENV=1
 
 ENTRYPOINT ["/init"]
