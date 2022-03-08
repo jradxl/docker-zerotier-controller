@@ -4,7 +4,7 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 ENV NODE_VERSION=17.x
 ENV ZEROTIER_ONE_VERSION=1.8.4
 
-ENV PATCH_ALLOW=0
+ENV PATCH_ALLOW=1
     
 RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux-* && \
     sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://linuxsoft.cern.ch/centos-vault|g' /etc/yum.repos.d/CentOS-Linux-* && \
@@ -93,7 +93,17 @@ RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.re
     dnf module enable -y postgresql:10 && \
     dnf install -y nodejs yarn postgresql-server libpq wget git bash jq postgresql-devel tar gcc-c++ make xz && \
     mkdir -p /var/lib/zerotier-one/ && \
-    ln -s /app/config/authtoken.secret /var/lib/zerotier-one/authtoken.secret
+    ln -s /app/config/authtoken.secret  /var/lib/zerotier-one/authtoken.secret  && \
+    ln -s /app/config/controller.d      /var/lib/zerotier-one/controller.d      && \
+    ln -s /app/config/identity.public   /var/lib/zerotier-one/identity.public   && \
+    ln -s /app/config/identity.secret   /var/lib/zerotier-one/identity.secret   && \
+    ln -s /app/config/local.conf        /var/lib/zerotier-one//local.conf       && \
+    ln -s /app/config/peers.d           /var/lib/zerotier-one/peers.d           && \
+    ln -s /app/config/planet            /var/lib/zerotier-one/planet            && \
+    ln -s /app/config/world.bin         /var/lib/zerotier-one/world.bin         && \
+    ln -s /app/config/workd.c           /var/lib/zerotier-one/workd.c           && \
+    ln -s /app/config/zerotier-one.pid  /var/lib/zerotier-one/zerotier-one.pid  && \
+    ln -s /app/config/zerotier-one.port /var/lib/zerotier-one/zerotier-one.port
 
 # Installing s6-overlay
 RUN S6_OVERLAY_VERSION=`curl --silent "https://api.github.com/repos/just-containers/s6-overlay/releases/latest" | jq -r .tag_name | sed 's/^v//'` && \

@@ -5,8 +5,9 @@ jradxl, March 2022
 This is not intended as an alternative to D4rk4, just my playing with the work.
 
 1. Remove port 3000. Nothing using that port in container
-2. Update this README
-
+2. Dockerfile, Line 7, ENV PATCH_ALLOW=1. Needed to run patch.py
+3. Dockerfile, Line 96+, add more sym links. Needed to allow "zerotier-cli" etc to work from within container.
+4. Now, when built and run, the Zerotier's own PLANETs do not show with "zerotier-cli listpeers"
 
 jradxl/End
 
