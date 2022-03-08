@@ -1,5 +1,17 @@
 # docker-zerotier-controller
 
+
+jradxl, March 2022
+This is not intended as an alternative to D4rk4, just my playing with the work.
+
+1. Remove port 3000. Nothing using that port in container
+2. Update this README
+
+
+jradxl/End
+
+
+
 Dockernized ZeroTierOne controller with zero-ui web interface. [中文讨论](https://v2ex.com/t/799623)
 
 ## Customize ZeroTierOne's controller planets
